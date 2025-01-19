@@ -4,7 +4,7 @@ export const useValidateQuestion = () => {
   const validateQuestion = (question: string) => {
     const lowercaseQuestion = question.toLowerCase();
 
-    const hasBadWord = BAD_WORDS.some((word) =>
+    const hasBadWord = BAD_WORDS.some((word: string) =>
       lowercaseQuestion.includes(word.toLowerCase())
     );
 
