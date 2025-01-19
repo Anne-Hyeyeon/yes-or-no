@@ -4,7 +4,7 @@ import { getRandomItem } from "../../../utils/random";
 import { useValidateQuestion } from "../../../hooks/useValidateQuestion";
 import { useRandomBunny } from "./useRandomBunny";
 
-export function useAnswer(question: string) {
+export function useYesNoAnswer(question: string) {
   const { validateQuestion } = useValidateQuestion();
 
   const isValid = useMemo(

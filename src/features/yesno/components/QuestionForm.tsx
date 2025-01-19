@@ -38,9 +38,9 @@ export default function QuestionForm({ onSubmit }: QuestionFormProps) {
         <textarea
           value={question}
           onChange={(e) => setQuestion(e.target.value)}
-          maxLength={100} // 최대 100자 제한
+          maxLength={100}
           className="w-full p-4 border rounded-lg h-32 resize-none focus:outline-none focus:ring-1 focus:ring-gray-400"
-          placeholder="100자 이내로 Yes or No가 고민되는 상황을 적어 주세요. ex) 소개팅남이랑 한 번만 더 만나볼까?"
+          placeholder="Yes or No가 고민되는 상황을 적어 주세요. ex) 소개팅남이랑 한 번만 더 만나볼까?"
         />
         <div className="text-right text-sm text-gray-500">
           {question.length}/100
