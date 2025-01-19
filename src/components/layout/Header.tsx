@@ -1,8 +1,17 @@
+import headerBunny from "../../assets/images/header/header-bunny.jpeg";
+
 export default function Header() {
   return (
     <header className="px-4 py-3 border-b">
       <div className="flex items-center justify-between">
-        <h1 className="text-xl font-bold">결정토끼</h1>
+        <div className="flex items-center gap-2">
+          <img
+            src={headerBunny}
+            alt="header bunny"
+            className="w-6 h-6 object-contain"
+          />
+          <h1 className="text-xl font-bold">결정토끼</h1>
+        </div>
         <button className="p-2 hover:bg-gray-100 rounded-full">
           <svg
             xmlns="http://www.w3.org/2000/svg"

@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { OPENING_TEXT } from "./constants";
-import openingBunny from "../../assets/images/opening/opening-bunny.jpeg";
-import { getRandomItem } from "../../utils/random";
 import { useFadeIn } from "../../hooks/useFadein";
+import { getRandomItem } from "../../utils/random";
+import openingBunny from "../../assets/images/opening/opening-bunny.jpeg";
 
 type OpeningProps = {
   onEnter: () => void;
