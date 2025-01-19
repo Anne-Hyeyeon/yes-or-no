@@ -25,3 +25,4 @@ dist-ssr
 
 # Sensitive data
 src/constants/restricted-words.ts
+*.env
