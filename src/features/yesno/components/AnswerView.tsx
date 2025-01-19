@@ -40,9 +40,9 @@ export default function AnswerView({ question, onReset }: AnswerViewProps) {
                 </span>
               ) : (
                 <>
-                  <span className="text-2xl font-bold">
+                  <div className="text-6xl font-bold">
                     {isYes ? "YES!" : "NO!"}
-                  </span>
+                  </div>
                   {isYes ? " 바로 진행해!" : "... 다시 생각해보는 게 좋겠어."}
                 </>
               )}

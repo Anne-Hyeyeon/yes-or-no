@@ -2,15 +2,20 @@ import { useState } from "react";
 
 export function useMultiChoiceQuestionForm(initialInputs = ["", ""]) {
   const [inputs, setInputs] = useState(initialInputs);
+  const [question, setQuestion] = useState("");
 
   const handleInputChange = (index: number, value: string) => {
     const newInputs = [...inputs];
-    newInputs[index] = value.slice(0, 50); // 50자 제한
+    newInputs[index] = value.slice(0, 50);
     setInputs(newInputs);
   };
 
+  const handleQuestionChange = (value: string) => {
+    setQuestion(value.slice(0, 50));
+  };
+
   const addInput = () => {
-    if (inputs.length < 10) {
+    if (inputs.length < 20) {
       setInputs([...inputs, ""]);
     }
   };
@@ -24,7 +29,9 @@ export function useMultiChoiceQuestionForm(initialInputs = ["", ""]) {
 
   return {
     inputs,
+    question,
     handleInputChange,
+    handleQuestionChange,
     addInput,
     removeInput,
     getValidInputs,

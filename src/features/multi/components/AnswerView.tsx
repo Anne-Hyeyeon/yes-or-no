@@ -7,10 +7,15 @@ import { useMultiChoiceAnswer } from "../../multi/hooks/useMultiChoiceAnswer";
 
 type AnswerViewProps = {
   choices: string[];
+  question: string;
   onReset: () => void;
 };
 
-export default function AnswerView({ choices, onReset }: AnswerViewProps) {
+export default function AnswerView({
+  choices,
+  question,
+  onReset,
+}: AnswerViewProps) {
   const { choice, randomBunnyImage, answer } = useMultiChoiceAnswer(choices);
   const { ref, generateImage } = useHtmlToImage();
   const { isLoading } = useLoading(4000);
@@ -27,6 +32,7 @@ export default function AnswerView({ choices, onReset }: AnswerViewProps) {
       <div ref={ref} className="bg-white space-y-6 p-1">
         <div className="space-y-4">
           <h2 className="text-xl font-semibold">고민되는 선택지</h2>
+          <div>{question}</div>
           <div className="bg-gray-50 p-4 rounded break-words whitespace-normal">
             {choices.map((choice, index) => (
               <p key={index} className="text-ml text-gray-700">

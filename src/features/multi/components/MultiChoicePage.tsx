@@ -3,24 +3,33 @@ import QuestionForm from "./QuestionForm";
 import AnswerView from "./AnswerView";
 import { useFadeIn } from "../../../hooks/useFadein";
 
+type SubmittedData = {
+  choices: string[];
+  question: string;
+} | null;
+
 export default function MultiChoicePage() {
-  const [selectedChoices, setSelectedChoices] = useState<string[] | null>(null);
+  const [submittedData, setSubmittedData] = useState<SubmittedData>(null);
   const { className: fadeInClassName } = useFadeIn(1000);
 
   const handleReset = () => {
-    setSelectedChoices(null);
+    setSubmittedData(null);
   };
 
   return (
-    <div className={`max-w-lg mx-auto p-4 ${fadeInClassName}`}>
-      {!selectedChoices ? (
+    <div className={fadeInClassName}>
+      {!submittedData ? (
         <QuestionForm
-          onSubmit={(choices) => {
-            setSelectedChoices(choices);
+          onSubmit={(data) => {
+            setSubmittedData(data);
           }}
         />
       ) : (
-        <AnswerView choices={selectedChoices || []} onReset={handleReset} />
+        <AnswerView
+          choices={submittedData.choices}
+          question={submittedData.question}
+          onReset={handleReset}
+        />
       )}
     </div>
   );

@@ -3,16 +3,25 @@ import { MULTI_CHOICE_STEPS } from "../constants";
 import { useMultiChoiceQuestionForm } from "../hooks/useMultiChoiceQuestionForm";
 
 type QuestionFormProps = {
-  onSubmit: (choices: string[]) => void;
+  onSubmit: (data: { choices: string[]; question: string }) => void;
 };
 
 export default function QuestionForm({ onSubmit }: QuestionFormProps) {
-  const { inputs, handleInputChange, addInput, removeInput, getValidInputs } =
-    useMultiChoiceQuestionForm();
+  const {
+    inputs,
+    question,
+    handleInputChange,
+    handleQuestionChange,
+    addInput,
+    removeInput,
+    getValidInputs,
+  } = useMultiChoiceQuestionForm();
 
   const handleSubmit = () => {
     const validInputs = getValidInputs();
-    if (validInputs.length > 0) onSubmit(validInputs);
+    if (validInputs.length > 0) {
+      onSubmit({ choices: validInputs, question: question });
+    }
   };
 
   return (
@@ -35,7 +44,15 @@ export default function QuestionForm({ onSubmit }: QuestionFormProps) {
         className="w-full h-auto object-contain rounded"
       />
 
-      <div className="space-y-4 mt-4">
+      <div className="space-y-3 mt-2">
+        <input
+          type="text"
+          value={question}
+          onChange={(e) => handleQuestionChange(e.target.value)}
+          maxLength={20}
+          className="w-full p-2 border rounded-lg focus:outline-none focus:ring-1 focus:ring-gray-400"
+          placeholder="어떤 고민을 하고 있나요? 질문을 입력해 주세요. (선택)"
+        />
         {inputs.map((input, index) => (
           <div key={index} className="flex items-center space-x-2">
             <input
@@ -54,12 +71,12 @@ export default function QuestionForm({ onSubmit }: QuestionFormProps) {
             </button>
           </div>
         ))}
-        {inputs.length < 10 && (
+        {inputs.length < 20 && (
           <button
             onClick={addInput}
             className="py-1 px-3 bg-gray-200 rounded-lg text-sm hover:bg-gray-300"
           >
-            추가하기 ({inputs.length}/10)
+            추가하기 ({inputs.length}/20)
           </button>
         )}
       </div>
