@@ -10,25 +10,22 @@ export default function Header() {
             alt="header bunny"
             className="w-6 h-6 object-contain"
           />
-          <h1 className="text-xl font-bold">결정토끼</h1>
-        </div>
-        <button className="p-2 hover:bg-gray-100 rounded-full">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
+          <a
+            href="/"
+            className="text-xl font-bold text-grey-500 hover:bg-gray-50"
           >
-            <circle cx="12" cy="12" r="1" />
-            <circle cx="19" cy="12" r="1" />
-            <circle cx="5" cy="12" r="1" />
-          </svg>
-        </button>
+            결정토끼
+          </a>{" "}
+        </div>
+        <p className="text-xs underline text-gray-500">
+          <a
+            href="https://buymeacoffee.com/annehyeyeon"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            개발자 응원하기 ☕️
+          </a>
+        </p>
       </div>
     </header>
   );

@@ -1,40 +1,24 @@
-import { useState } from "react";
 import multiChoiceBunny from "../../../assets/images/multi-choice/multi-choice-bunny.jpeg";
 import { MULTI_CHOICE_STEPS } from "../constants";
+import { useMultiChoiceQuestionForm } from "../hooks/useMultiChoiceQuestionForm";
 
 type QuestionFormProps = {
   onSubmit: (choices: string[]) => void;
 };
 
 export default function QuestionForm({ onSubmit }: QuestionFormProps) {
-  const [inputs, setInputs] = useState(["", ""]); // 기본 INPUT 2개
-
-  const handleInputChange = (index: number, value: string) => {
-    const newInputs = [...inputs];
-    newInputs[index] = value.slice(0, 50); // 글자수 제한
-    setInputs(newInputs);
-  };
-
-  const addInput = () => {
-    if (inputs.length < 10) {
-      setInputs([...inputs, ""]);
-    }
-  };
-
-  const removeInput = (index: number) => {
-    const newInputs = inputs.filter((_, i) => i !== index);
-    setInputs(newInputs);
-  };
+  const { inputs, handleInputChange, addInput, removeInput, getValidInputs } =
+    useMultiChoiceQuestionForm();
 
   const handleSubmit = () => {
-    const validInputs = inputs.filter((input) => input.trim() !== "");
+    const validInputs = getValidInputs();
     if (validInputs.length > 0) onSubmit(validInputs);
   };
 
   return (
     <div className="space-y-6">
       <div className="text-center space-y-4">
-        <h2 className="text-2xl font-semibold">질문 선택</h2>
+        <h2 className="text-2xl font-semibold">여러 선택지</h2>
         <div className="text-gray-600 space-y-2">
           {MULTI_CHOICE_STEPS.map((step, index) => (
             <p key={index}>
@@ -58,9 +42,9 @@ export default function QuestionForm({ onSubmit }: QuestionFormProps) {
               type="text"
               value={input}
               onChange={(e) => handleInputChange(index, e.target.value)}
-              maxLength={50} // HTML 속성으로 최대 길이 제한
+              maxLength={20}
               className="flex-1 p-2 border rounded-lg focus:outline-none focus:ring-1 focus:ring-gray-400"
-              placeholder={`선택지 ${index + 1} (50자 이내)`}
+              placeholder={`선택지 ${index + 1} (20자 이내)`}
             />
             <button
               onClick={() => removeInput(index)}
